@@ -167,13 +167,14 @@ else
   echo "$puzzle_input" > "$input_path"
 fi
 
-open "$part1_path"
+open --background "$part1_path"
 sleep 1
-open "$input_path"
+
+open --background "$input_path"
+sleep 1
 
 
 ### COMMAND LOOP ###
-
 current_part=1
 part1_end="$start"
 part2_end="$start"
