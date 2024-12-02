@@ -4,7 +4,7 @@ import { splitNested, parseIfNumber } from './lib/index.js';
 
 
 const INPUT_FILENAME = 'input.txt';
-const DELIMITERS = ['\n\n', '\n', ','];
+const DELIMITERS = ['\n\n', '\n', ',', / +/];
 
 const RELATIVE_PATH = process.argv[2];
 
@@ -50,6 +50,7 @@ const toInputString = (inputBytes) => {
 //   - Split on blank lines (if any)
 //   - Split on newlines (if any)
 //   - Split on commas (if any)
+//   - Split on spaces (if any)
 //   - If any delimiters were found, parse numbers
 //
 // Examples:
@@ -61,14 +62,14 @@ const toInputString = (inputBytes) => {
 //   "12345"            -> '12345'
 const parseInputs = (inputString) => {
   const validDelimiters = DELIMITERS
-    .filter(delim => inputString.includes(delim));
+    .filter(delim => new RegExp(delim).test(inputString));
 
   // If there are no clearly delimited groups, just return raw string
   if (validDelimiters.length === 0) {
     return inputString;
   }
 
-  const split = splitNested(inputString, validDelimiters);
+  const split = splitNested(inputString, validDelimiters, s => s.trim());
   return nestedMap(split, parseIfNumber);
 };
 

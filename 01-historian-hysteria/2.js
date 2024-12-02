@@ -11,11 +11,9 @@ import { sum, uniq } from 'lodash-es';
 import { count } from '../lib/index.js';
 
 
-export default function main({ lines }) {
-  const tuples = lines.map(line => line.split('   ').map(Number));
-
-  const lefts = tuples.map(tuple => tuple[0]);
-  const rights = tuples.map(tuple => tuple[1]);
+export default function main({ parsed }) {
+  const lefts = parsed.map(tuple => tuple[0]);
+  const rights = parsed.map(tuple => tuple[1]);
 
   const scores = uniq(lefts).map(left => count(rights, left) * left);
   return sum(scores);

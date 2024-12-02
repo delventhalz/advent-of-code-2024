@@ -56,7 +56,6 @@ const isSuperSafe = (levels) => {
 };
 
 
-export default function main({ lines }) {
-  const reports = lines.map(line => line.split(' ').map(Number));
-  return count(reports, isSuperSafe);
+export default function main({ parsed }) {
+  return count(parsed, isSuperSafe);
 }
