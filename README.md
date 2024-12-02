@@ -1,9 +1,9 @@
-# Advent of Code 2023 Solutions and Runner
+# Advent of Code 2024 Solutions and Runner
 
-Merry [Advent of Code](https://adventofcode.com/2023) to those who celebrate!
+Merry [Advent of Code](https://adventofcode.com/2024) to those who celebrate!
 
 This is a copy of my
-[2022 AoC Runner](https://github.com/delventhalz/advent-of-code-2022), without
+[2023 AoC Runner](https://github.com/delventhalz/advent-of-code-2023), without
 last year's solutions. It is mostly aimed at streamlining developing JavaScript
 solutions, but I am starting to experiment with
 [supporting other languages](#using-other-languages). I expect the project to
@@ -34,8 +34,8 @@ Ensure you have a recent version of [Node.js](https://nodejs.org/en/)
 installed, then run in your terminal:
 
 ```bash
-git clone https://github.com/delventhalz/advent-of-code-2023.git
-cd advent-of-code-2023/
+git clone https://github.com/delventhalz/advent-of-code-2024.git
+cd advent-of-code-2024/
 npm install
 ```
 
@@ -274,19 +274,12 @@ and you can join yourself with this code:
 107172-b51ab08f
 ```
 
-I am also using my own leaderboard with a few friends, which you can join with
-this code:
-
-```
-472347-2b04474b
-```
-
 ## License
 
 "Advent of Code" and all Advent of Code related content are property of Advent
 of Code and protected by copyright:
 
-https://adventofcode.com/2023/about#legal
+https://adventofcode.com/2024/about#legal
 
 All solution code and associated tools were written by me, Zac Delventhal,
 and are made available under the [MIT](./LICENSE) open source license.
