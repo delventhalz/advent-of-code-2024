@@ -204,7 +204,7 @@ go_to_next_part() {
       echo "$part2" > "$part2_path"
     fi
 
-    open "$part2_path"
+    open --background "$part2_path"
   else
     part2_end=$(date +%s)
     part1_dur=$(date -r $(( $part1_end - $start )) -u +%H:%M:%S)
