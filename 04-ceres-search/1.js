@@ -7,26 +7,40 @@
  * https://adventofcode.com/2024/day/4
  */
 
-import { count, eachMatrix } from '../lib/index.js';
+import {
+  count,
+  eachMatrix,
+  eachUp,
+  eachUpRight,
+  eachRight,
+  eachDownRight,
+  eachDown,
+  eachDownLeft,
+  eachLeft,
+  eachUpLeft,
+  arrayFromMatrixIterator,
+} from '../lib/index.js';
 
 
 export default function main({ matrix }) {
   let xmasCount = 0;
 
-  eachMatrix(matrix, (char, [x, y]) => {
+  eachMatrix(matrix, (char, coords) => {
     if (char === 'X') {
       const words = [
-        matrix[y - 1]?.[x] + matrix[y - 2]?.[x] + matrix[y - 3]?.[x],
-        matrix[y - 1]?.[x + 1] + matrix[y - 2]?.[x + 2] + matrix[y - 3]?.[x + 3],
-        matrix[y]?.[x + 1] + matrix[y]?.[x + 2] + matrix[y]?.[x + 3],
-        matrix[y + 1]?.[x + 1] + matrix[y + 2]?.[x + 2] + matrix[y + 3]?.[x + 3],
-        matrix[y + 1]?.[x] + matrix[y + 2]?.[x] + matrix[y + 3]?.[x],
-        matrix[y + 1]?.[x - 1] + matrix[y + 2]?.[x - 2] + matrix[y + 3]?.[x - 3],
-        matrix[y]?.[x - 1] + matrix[y]?.[x - 2] + matrix[y]?.[x - 3],
-        matrix[y - 1]?.[x - 1] + matrix[y - 2]?.[x - 2] + matrix[y - 3]?.[x - 3],
-      ];
+        eachUp,
+        eachUpRight,
+        eachRight,
+        eachDownRight,
+        eachDown,
+        eachDownLeft,
+        eachLeft,
+        eachUpLeft,
+      ].map((fn) => {
+        return arrayFromMatrixIterator(matrix, fn, coords).join('').slice(0, 4);
+      });
 
-      xmasCount += count(words, 'MAS');
+      xmasCount += count(words, 'XMAS');
     }
   });
 
