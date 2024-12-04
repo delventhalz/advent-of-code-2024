@@ -7,121 +7,28 @@
  * https://adventofcode.com/2024/day/4
  */
 
-import { noop } from 'lodash-es';
-import { eachMatrix, eachOnPath } from '../lib/index.js';
+import { count, eachMatrix } from '../lib/index.js';
 
 
 export default function main({ matrix }) {
-  let count = 0;
+  let xmasCount = 0;
 
   eachMatrix(matrix, (char, [x, y]) => {
     if (char === 'X') {
-      let word = 'X';
+      const words = [
+        matrix[y - 1]?.[x] + matrix[y - 2]?.[x] + matrix[y - 3]?.[x],
+        matrix[y - 1]?.[x + 1] + matrix[y - 2]?.[x + 2] + matrix[y - 3]?.[x + 3],
+        matrix[y]?.[x + 1] + matrix[y]?.[x + 2] + matrix[y]?.[x + 3],
+        matrix[y + 1]?.[x + 1] + matrix[y + 2]?.[x + 2] + matrix[y + 3]?.[x + 3],
+        matrix[y + 1]?.[x] + matrix[y + 2]?.[x] + matrix[y + 3]?.[x],
+        matrix[y + 1]?.[x - 1] + matrix[y + 2]?.[x - 2] + matrix[y + 3]?.[x - 3],
+        matrix[y]?.[x - 1] + matrix[y]?.[x - 2] + matrix[y]?.[x - 3],
+        matrix[y - 1]?.[x - 1] + matrix[y - 2]?.[x - 2] + matrix[y - 3]?.[x - 3],
+      ];
 
-      eachOnPath(matrix, [x, y - 1], noop, (nextChar, [nextX, nextY]) => {
-        word += nextChar;
-        if (word === 'XMAS') {
-          count += 1;
-          return null;
-        }
-        if (!'XMAS'.startsWith(word)) {
-          return null;
-        }
-        return [nextX, nextY - 1];
-      });
-
-      word = 'X';
-      eachOnPath(matrix, [x + 1, y - 1], noop, (nextChar, [nextX, nextY]) => {
-        word += nextChar;
-        if (word === 'XMAS') {
-          count += 1;
-          return null;
-        }
-        if (!'XMAS'.startsWith(word)) {
-          return null;
-        }
-        return [nextX + 1, nextY - 1];
-      });
-
-      word = 'X';
-      eachOnPath(matrix, [x + 1, y], noop, (nextChar, [nextX, nextY]) => {
-        word += nextChar;
-        if (word === 'XMAS') {
-          count += 1;
-          return null;
-        }
-        if (!'XMAS'.startsWith(word)) {
-          return null;
-        }
-        return [nextX + 1, nextY];
-      });
-
-      word = 'X';
-      eachOnPath(matrix, [x + 1, y + 1], noop, (nextChar, [nextX, nextY]) => {
-        word += nextChar;
-        if (word === 'XMAS') {
-          count += 1;
-          return null;
-        }
-        if (!'XMAS'.startsWith(word)) {
-          return null;
-        }
-        return [nextX + 1, nextY + 1];
-      });
-
-      word = 'X';
-      eachOnPath(matrix, [x, y + 1], noop, (nextChar, [nextX, nextY]) => {
-        word += nextChar;
-        if (word === 'XMAS') {
-          count += 1;
-          return null;
-        }
-        if (!'XMAS'.startsWith(word)) {
-          return null;
-        }
-        return [nextX, nextY + 1];
-      });
-
-      word = 'X';
-      eachOnPath(matrix, [x - 1, y + 1], noop, (nextChar, [nextX, nextY]) => {
-        word += nextChar;
-        if (word === 'XMAS') {
-          count += 1;
-          return null;
-        }
-        if (!'XMAS'.startsWith(word)) {
-          return null;
-        }
-        return [nextX - 1, nextY + 1];
-      });
-
-      word = 'X';
-      eachOnPath(matrix, [x - 1, y], noop, (nextChar, [nextX, nextY]) => {
-        word += nextChar;
-        if (word === 'XMAS') {
-          count += 1;
-          return null;
-        }
-        if (!'XMAS'.startsWith(word)) {
-          return null;
-        }
-        return [nextX - 1, nextY];
-      });
-
-      word = 'X';
-      eachOnPath(matrix, [x - 1, y - 1], noop, (nextChar, [nextX, nextY]) => {
-        word += nextChar;
-        if (word === 'XMAS') {
-          count += 1;
-          return null;
-        }
-        if (!'XMAS'.startsWith(word)) {
-          return null;
-        }
-        return [nextX - 1, nextY - 1];
-      });
+      xmasCount += count(words, 'MAS');
     }
   });
 
-  return count;
+  return xmasCount;
 }
