@@ -18,7 +18,10 @@ export default function main({ matrix }) {
       const fromLeft = `${matrix[y - 1]?.[x - 1]}A${matrix[y + 1]?.[x + 1]}`;
       const fromRight = `${matrix[y - 1]?.[x + 1]}A${matrix[y + 1]?.[x - 1]}`;
 
-      if ((fromLeft === 'MAS' || fromLeft === 'SAM') && (fromRight === 'MAS' || fromRight === 'SAM')) {
+      const hasLeft = fromLeft === 'MAS' || fromLeft === 'SAM';
+      const hasRight = fromRight === 'MAS' || fromRight === 'SAM';
+
+      if (hasLeft && hasRight) {
         count += 1;
       }
     }
