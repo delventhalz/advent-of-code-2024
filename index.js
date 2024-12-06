@@ -69,7 +69,7 @@ const parseInputs = (inputString) => {
     return inputString;
   }
 
-  const split = splitNested(inputString, validDelimiters, s => s.trim());
+  const split = splitNested(inputString);
   return nestedMap(split, parseIfNumber);
 };
 
