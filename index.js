@@ -61,15 +61,7 @@ const toInputString = (inputBytes) => {
 //   "corge\n"          -> 'corge'
 //   "12345"            -> '12345'
 const parseInputs = (inputString) => {
-  const validDelimiters = DELIMITERS
-    .filter(delim => new RegExp(delim).test(inputString));
-
-  // If there are no clearly delimited groups, just return raw string
-  if (validDelimiters.length === 0) {
-    return inputString;
-  }
-
-  const split = splitNested(inputString);
+  const split = splitNested(inputString, DELIMITERS);
   return nestedMap(split, parseIfNumber);
 };
 

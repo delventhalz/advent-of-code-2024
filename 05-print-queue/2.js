@@ -26,10 +26,9 @@ const isOrdered = (rulebook, update) => {
   return true;
 }
 
-export default function main({ input }) {
-  const [rulesString, updatesString] = input.split('\n\n');
-  const rules = rulesString.split('\n').map(str => str.split('|').map(Number));
-  const updates = updatesString.split('\n').map(str => str.split(',').map(Number));
+export default function main({ parsed }) {
+  const [rulesStrings, updates] = parsed;
+  const rules = rulesStrings.map(str => str.split('|').map(Number));
 
   const rulebook = mapValues(
     groupBy(rules, pair => pair[0]),
