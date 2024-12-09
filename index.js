@@ -62,7 +62,7 @@ const toInputString = (inputBytes) => {
 //   "12345"            -> '12345'
 const parseInputs = (inputString) => {
   const split = splitNested(inputString, DELIMITERS);
-  return nestedMap(split, parseIfNumber);
+  return Array.isArray(split) ? nestedMap(split, parseIfNumber) : split;
 };
 
 
